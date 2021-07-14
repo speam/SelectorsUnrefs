@@ -55,3 +55,10 @@ python FindSelectorsUnrefs.py -a /Users/.../Build/Products/Debug-iphonesimulator
 ## 三、原理
 
 Mach-O 文件中的`__TEXT:__objc_methname`包含了代码中的所有方法名，而`__DATA__objc_selrefs`中则包含了所有被使用的方法的引用，通过取两个集合的差集就可以得到所有未被使用的代码。
+
+## 四、检测不到的情况
+
+1. 方法1调用方法2，但是没有类调用方法1。只能检测出方法1，将方法1删除之后才会检测出方法2，所以需要检测多次
+2. Swift 测不到
+3. C 语言方法检测不到，会被认为是已使用方法
+4. 通过字符串转化成 Selector 检测不到，会被认为是为被调用的方法
