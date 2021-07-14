@@ -1,6 +1,6 @@
 # 检测项目中未使用到的方法
 
-## 使用方式
+## 一、使用方式
 
 ```
 python FindSelectorsUnrefs.py -a /Users/.../Build/Products/Debug-iphonesimulator/XXX.app -p /Users/.../ProjectPath -w WB,JD
@@ -18,7 +18,7 @@ python FindSelectorsUnrefs.py -a /Users/.../Build/Products/Debug-iphonesimulator
 >
 >  -w 和 -b 不能共存，共存会报错
 
-## 运行结果
+## 二、运行结果示例
 
 ```
 获取所有的protocol中的方法...
@@ -52,6 +52,6 @@ python FindSelectorsUnrefs.py -a /Users/.../Build/Products/Debug-iphonesimulator
 请在项目中进行二次确认后处理
 ```
 
-## 原理
+## 三、原理
 
 Mach-O 文件中的`__TEXT:__objc_methname`包含了代码中的所有方法名，而`__DATA__objc_selrefs`中则包含了所有被使用的方法的引用，通过取两个集合的差集就可以得到所有未被使用的代码。
